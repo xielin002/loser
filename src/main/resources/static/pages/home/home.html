@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>layui</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../../layui/css/layui.css">
+</head>
+<body>
+<div class="layui-carousel" id="test1" lay-filter="test1">
+  <div carousel-item="">
+ 			<div class="carousel"
+				style="background: url(/img/1.jpg) no-repeat center center; background-color: #e5f9e2b8;"></div>
+			<div class="carousel"
+				style="background: url(/img/2.jpg) no-repeat center center; background-color: #e5f9e2b8;"></div>
+			<div class="carousel"
+				style="background: url(/img/3.jpg) no-repeat center center; background-color: #e5f9e2b8;"></div>
+			<div class="carousel"
+				style="background: url(/img/4.jpg) no-repeat center center; background-color: #e5f9e2b8;"></div>
+			<div class="carousel"
+				style="background: url(/img/5.jpg) no-repeat center center; background-color: #e5f9e2b8;"></div>
+  </div>
+</div>
+
+<div style="padding: 20px; background-color: #F2F2F2;">
+  <div class="layui-row layui-col-space15">
+    <div class="layui-col-md6">
+      <div class="layui-card">
+        <div class="layui-card-header">卡片面板</div>
+        <div class="layui-card-body">
+          卡片式面板面板通常用于非白色背景色的主体内<br>
+          从而映衬出边框投影
+        </div>
+      </div>
+    </div>
+    <div class="layui-col-md6">
+      <div class="layui-card">
+        <div class="layui-card-header">卡片面板</div>
+        <div class="layui-card-body">
+          结合 layui 的栅格系统<br>
+          轻松实现响应式布局
+        </div>
+      </div>
+    </div>
+    <div class="layui-col-md12">
+      <div class="layui-card">
+        <div class="layui-card-header">标题</div>
+        <div class="layui-card-body">
+          内容
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+ 
+<script src="../../layui/layui.js" charset="utf-8"></script>         
+<script>
+layui.use(['carousel', 'form'], function(){
+  var carousel = layui.carousel
+  ,form = layui.form;
+  
+  //常规轮播
+  carousel.render({
+	    elem: '#test1'
+	    ,width: '100%' //设置容器宽度
+	    ,hight: '100%' //设置容器宽度
+	    ,arrow: 'always' //始终显示箭头
+	    ,autoplay:true //是否自动切换
+	    //,anim: 'updown' //切换动画方式,默认左右
+  });
+  
+  //事件
+  carousel.on('change(test4)', function(res){
+    console.log(res)
+  });
+  
+  var $ = layui.$, active = {
+    set: function(othis){
+      var THIS = 'layui-bg-normal'
+      ,key = othis.data('key')
+      ,options = {};
+      
+      othis.css('background-color', '#5FB878').siblings().removeAttr('style'); 
+      options[key] = othis.data('value');
+      ins3.reload(options);
+    }
+  };
+  
+  //监听开关
+  form.on('switch(autoplay)', function(){
+    ins3.reload({
+      autoplay: this.checked
+    });
+  });
+  
+  $('.demoSet').on('keyup', function(){
+    var value = this.value
+    ,options = {};
+    if(!/^\d+$/.test(value)) return;
+    
+    options[this.name] = value;
+    ins3.reload(options);
+  });
+  
+});
+</script>
+
+</body>
+</html>
